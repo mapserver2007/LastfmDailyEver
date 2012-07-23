@@ -1,0 +1,11 @@
+from:
+  notebook: Last.fm
+  stack: Last.fm
+  limit: 300
+to:
+  notebook: Last.fm(今日聞いた音楽)
+  stack: Last.fm
+  tags:
+    - Last.fm
+    - Last.fm - Daily
+    - LifeLog
