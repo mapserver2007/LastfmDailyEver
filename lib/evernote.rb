@@ -57,8 +57,7 @@ module LastfmDailyEver
         unix_time = created_at.slice(0, created_at.length - 3)
         note_date = Time.at(unix_time.to_f)
         # 今日の日付のノートのみ取得する
-        #now = Time.now
-        now = Time.local(2012,7,24,0,0.0)
+        now = Time.now
         break unless now.month == note_date.month && now.day == note_date.day
         # タイトルをハッシュにしてキーとする
         key = Digest::MD5.hexdigest(note.title)
