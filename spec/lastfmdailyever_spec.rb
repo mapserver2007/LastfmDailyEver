@@ -23,7 +23,6 @@ describe LastfmDailyEver, 'が実行する処理' do
       list = evernote.get_note_in_today(config["notebook"], config["stack"], config["limit"])
       config = @evernote_config["to"]
       res = evernote.add_note(list, "Development", nil, config["tags"])
-      p res
       # notebook: Development
       res.notebookGuid.should == "2c2b6d3a-9f5a-48a2-9a40-8d617cc556d7"
       # tag: Last.fm
@@ -31,9 +30,7 @@ describe LastfmDailyEver, 'が実行する処理' do
       # tag: LifeLog
       res.tagGuids[1].should == "f0a37dfa-d795-41fa-b68c-4b84373fae77"
       # tag: Last.fm - Daily
-      res.tagGuids[2].should == "8ffc2c9f-00d3-45fb-866d-62eac2d83ec5"
+      res.tagGuids[2].should == "3c5c248b-bd7f-43df-bed8-0d3a12a519d3"
     end
-    
   end
-  
 end

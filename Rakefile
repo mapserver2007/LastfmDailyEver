@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 $: << File.dirname(__FILE__) + "/lib"
-require 'lastfmfeedever'
+require 'lastfmdailyever'
 require 'rspec/core/rake_task'
 require 'yaml'
 

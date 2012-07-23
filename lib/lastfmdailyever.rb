@@ -11,6 +11,12 @@ module LastfmDailyEver
       File.exists?(path) ? YAML.load_file(path) : ENV
     end
     
+    # clockwork実行時間設定
+    def clock_time
+      path = File.dirname(__FILE__) + "/../config/clock.yml"
+      load_config(path)["schedule"]
+    end
+    
     # Evernote設定
     def evernote_config
       path = File.dirname(__FILE__) + "/../config/evernote.yml"
@@ -25,11 +31,10 @@ module LastfmDailyEver
     
     def run
       config = evernote_config["from"]
-      evernote = LastfmFeedEver::MyEvernote.new(evernote_auth_token["auth_token"])
+      evernote = LastfmDailyEver::MyEvernote.new(evernote_auth_token["auth_token"])
       list = evernote.get_note_in_today(config["notebook"], config["stack"], config["limit"])
       config = evernote_config["to"]
       evernote.add_note(list, config["notebook"], config["stack"], config["tags"])
     end
-    
   end
 end
