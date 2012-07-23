@@ -57,7 +57,8 @@ module LastfmDailyEver
         unix_time = created_at.slice(0, created_at.length - 3)
         note_date = Time.at(unix_time.to_f)
         # 今日の日付のノートのみ取得する
-        now = Time.now
+        #now = Time.now
+        now = Time.local(2012,7,24,0,0.0)
         break unless now.month == note_date.month && now.day == note_date.day
         # タイトルをハッシュにしてキーとする
         key = Digest::MD5.hexdigest(note.title)
@@ -107,11 +108,15 @@ module LastfmDailyEver
       xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
       "<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml.dtd\">" +
       "<en-note>%s</en-note>"
+      if list.empty?
+        xml % to_ascii("今日聞いた音楽はありません。")
+      else
       no = 1
-      xml % (list.each_with_object "" do |data, html|
-        html << "<div><![CDATA[#{no}: #{to_ascii(data)}]]></div>"
-        no += 1
-      end)
+        xml % (list.each_with_object "" do |data, html|
+          html << "<div><![CDATA[#{no}: #{to_ascii(data)}]]></div>"
+          no += 1
+        end)
+      end
     end
   end
 end
